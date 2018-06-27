@@ -1,14 +1,14 @@
-table {
+/* table {
     position: relative;
-    /* width: 375px; */
+    width: 375px; 
     background-color: #aaa;
     overflow: hidden;
     border-collapse: collapse;
   }
   thead {
     position: relative;
-    display: block; /*seperates the header from the body allowing it to be positioned*/
-    /* width: 375px; */
+    display: block; 
+    width: 375px;
     overflow: visible;
   }
   thead th {
@@ -17,43 +17,59 @@ table {
     height: 32px;
     border: 1px solid #222;
   }
-  thead th:nth-child(1) {/*first cell in the header*/
+  thead th:nth-child(1) {
     position: relative;
-    display: block; /*seperates the first cell in the header from the header*/
+    display: block; 
     background-color: #88b;
   }
   tbody {
     position: relative;
-    display: block; /*seperates the tbody from the header*/
-    /* width: 375px; */
+    display: block; 
+    width: 375px;
     height: 239px;
     overflow: scroll;
   }
   tbody td {
-    /* background-color: #bbc; */
-    min-width: 120px;
+    background-color: #bbc; 
+    min-width: 120px; 
     border: 1px solid #222;
   }
-  tbody tr td:nth-child(1) {  /*the first cell in each tr*/
+  tbody tr td:nth-child(1) {  
     position: relative;
-    display: block; /*seperates the first column from the tbody*/
+    display: block; 
     height: 40px;
     background-color: #99a;
   }
   .fisrTable {
       z-index: 50;
   }
-  /* .dragscroll {
+  .dragscroll {
       cursor: pointer;
-  } */
+  } 
   @media screen and (max-width: 480px) {
     table {
-         width: 375px;
+         width: 450px;
     }
     thead {
-         width: 375px;
+         width: 450px;
     }
     tbody {
-        width: 375px;
+        width: 450px;
     }
- }
+ } */
+
+ table {
+    position: relative;
+    
+  }
+  thead th:nth-child(1) {
+    position: relative;
+    display: block; 
+    background-color: #88b;
+  }
+  tbody tr td:nth-child(1) {  
+    position: relative;
+    display: block; 
+    height: 40px;
+    background-color: #99a;
+  }

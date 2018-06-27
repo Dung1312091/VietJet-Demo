@@ -169,8 +169,10 @@ class Layout extends Component {
                 </div>
                 <div className="rightCnt ">
                   <div className={`${this.state.isCollapse ? 'overlay animated animation-1 slideInTop' : null}`} onClick={this.handleCollapse} />
+                  <div style={{marginLeft:50}}>
                   <Header handleCollapse={this.handleCollapse}/>
                   {this.props.children}
+                  </div>
                 </div>
               </div>
       )}
