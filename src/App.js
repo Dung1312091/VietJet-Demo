@@ -1,16 +1,25 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import logo from "./logo.svg";
+import { AppContext } from './Context/appContext';
 import "./App.css";
 import ScrollDetector from './Components/Content';
-import Dashboard from "./Components/Dashboard";
+import Layout from './TestLayout';
 class App extends Component {
+  constructor(props) {
+    super(props);
+    const clientWidth = document.documentElement.clientWidth || window.innerWidth;
+    this.state = {
+      isMobile: clientWidth <= 480 ? true : false
+    }
+  }
   render() {
     return (
       <Router>
-        <Dashboard >
-          <ScrollDetector></ScrollDetector>
-        </Dashboard>
+        <AppContext.Provider value={this.state}> 
+          <Layout >
+            <ScrollDetector></ScrollDetector>
+          </Layout>
+        </AppContext.Provider>
       </Router>
     );
   }

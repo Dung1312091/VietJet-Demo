@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Icon } from "react-fa";
-import { NavLink } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { NavLink} from "react-router-dom";
+import {AppContext} from '../Context/appContext';
+import Header from '../Components/Header';
 import Ink from "react-ink";
+
 import Avartar from '../Components/common/Avartar';
-import ScrollDetector from "../Components/Content";
+
 import "./style.css";
 const listMenu = [
   {
@@ -12,17 +14,17 @@ const listMenu = [
     menuItem: [
       {
         name: 'Filight Report',
-        linkTo: 'abx',
+        linkTo: '/a',
         icon: 'fighter-jet'
       },
       {
         name: 'Ground Performantce',
-        linkTo: 'abx',
+        linkTo: '/ab',
         icon: 'fighter-jet'
       },
       {
         name: 'EFB Bin',
-        linkTo: 'abx',
+        linkTo: '/abc',
         icon: 'fighter-jet'
       }
     ]
@@ -31,32 +33,32 @@ const listMenu = [
     menuItem: [
       {
         name: 'VIP Management',
-        linkTo: 'abx',
+        linkTo: '/abcd',
         icon: 'fighter-jet'
       },
       {
         name: 'NTL Management',
-        linkTo: 'abx',
+        linkTo: '/abcde',
         icon: 'fighter-jet'
       },
       {
         name: 'Airport Management',
-        linkTo: 'abx',
+        linkTo: '/abcdef',
         icon: 'fighter-jet'
       },
       {
         name: 'Aircraft Management',
-        linkTo: 'abx',
+        linkTo: '/abcdefg',
         icon: 'fighter-jet'
       },
       {
         name: 'Groups & Sites',
-        linkTo: 'abx',
+        linkTo: '/abcdefgh',
         icon: 'fighter-jet'
       },
       {
         name: 'Account Management',
-        linkTo: 'abx',
+        linkTo: '/abcdefghj',
         icon: 'fighter-jet'
       }
     ]
@@ -66,12 +68,12 @@ const listMenu = [
     menuItem: [
       {
         name: 'MCC schedule',
-        linkTo: 'abx',
+        linkTo: '/abcdefghjk',
         icon: 'fighter-jet'
       },
       {
         name: 'Aircraft Assiignment',
-        linkTo: 'abx',
+        linkTo: '/abcdefghjkm',
         icon: 'fighter-jet'
       }
     ]
@@ -80,10 +82,12 @@ const listMenu = [
 class Layout extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props)
     this.state = {
       isCollapse: false,
       isAnimation: false,
-      src: 'https://vegiagoc.com/Upload/images/Vietjets_cabin_crew_on_duty.jpg'
+      src: 'https://vegiagoc.com/Upload/images/Vietjets_cabin_crew_on_duty.jpg',
+      isMobile: false
     };
   }
   handleCollapse = () => {
@@ -100,7 +104,7 @@ class Layout extends Component {
   renderGroupMenu = () => {
     return listMenu.map((gr, i) => {
       return (
-        <React.Fragment>
+        <React.Fragment key={i}>
           <li className="groupMenu">
             <span className="groupMenuText menuText">{gr.group}</span>
           </li>
@@ -112,7 +116,7 @@ class Layout extends Component {
   renderMenu = (menuList, i) => {
     return menuList.map((e, i) => {
       return (
-        <li>
+        <li key={i}>
           <NavLink
             to={e.linkTo}
             activeClassName="active"
@@ -129,52 +133,54 @@ class Layout extends Component {
   render() {
     const { isCollapse, isAnimation } = this.state;
     return (
-      <Router>
-        <div className="wrapper ">
-          <div
-            className={`leftSideBar ${
-              isCollapse
-                ? "animated animation-1 slideInLeft collapse"
-                : !isCollapse && isAnimation ? "animated animation-1 slideOutLeft" : ''
-              }`}
-          >
-            <ul>
-              <li style={{ marginBottom: 50 }} className="profile">
-                <div>
-                  <Avartar src={this.state.src} handleClick={this.handleCollapse} />
-                  <div className="profileInfo">
-                    <p className="menuText">Hello, Ngoc Trinh</p>
-                    <p className="textProfile">Setting</p>
-                  </div>
+      <AppContext.Consumer>
+      {context => (
+                <div className="wrapper ">
+                <div
+                  className={`leftSideBar ${
+                    isCollapse
+                      ? "animated animation-1 slideInLeft collapse"
+                      : !isCollapse && isAnimation ? "animated animation-1 slideOutLeft" : ''
+                    }`}
+                >
+                  <ul> 
+                    <li style={{ marginBottom: 50 }} className="profile">
+                      <div>
+                        <Avartar src={this.state.src} handleClick={this.handleCollapse} />
+                        <div className="profileInfo">
+                          <p className="menuText">Hello, Ngoc Trinh</p>
+                          <p className="textProfile">Setting</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="dashBoard">
+                     
+                        <div
+                          className="routerLink"
+                        >
+                          <Icon name="slack" className="icon" />
+                          <span className="menuText">Dashboard</span>
+                          {/* <Ink style={{ color: "black" }} /> */}
+                        </div>
+                     
+                    </li>
+                    {this.renderGroupMenu()}
+                  </ul>
                 </div>
-              </li>
-              <li className="dashBoard">
-                <li>
-                  <div
-                    className="routerLink"
-                  >
-                    <Icon name="slack" className="icon" />
-                    <span className="menuText">Dashboard</span>
-                    {/* <Ink style={{ color: "black" }} /> */}
-                  </div>
-                </li>
-              </li>
-              {this.renderGroupMenu()}
-            </ul>
-          </div>
-          <div className="rightCnt ">
-            <div className={`${this.state.isCollapse ? 'overlay animated animation-1 slideInTop' : null}`} onClick={this.handleCollapse} />
-            <div>
-              <button onClick={this.handleCollapse} style={{ marginLeft: 300, zIndex: 3000, position: 'absolute' }}>
-                Click
-              </button>
-              <ScrollDetector />
-            </div>
-          </div>
-        </div>
-      </Router>
+                <div className="rightCnt ">
+                  <div className={`${this.state.isCollapse ? 'overlay animated animation-1 slideInTop' : null}`} onClick={this.handleCollapse} />
+                  <Header handleCollapse={this.handleCollapse}/>
+                  {this.props.children}
+                </div>
+              </div>
+      )}
+      </AppContext.Consumer>
     );
   }
 }
 
 export default Layout;
+
+
+ 
+
