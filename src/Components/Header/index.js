@@ -6,7 +6,7 @@ class Header extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div> 
                 <button onClick={this.props.handleCollapse}>Click</button>
             </div>
         );
