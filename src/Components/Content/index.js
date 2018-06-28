@@ -3,6 +3,7 @@ import React from "react";
 // import ScrollTableBT from '../TableBosstrapScroll';
 // import ScrollTable from '../ScrollTable';
 import BasicExample from '../ScrollTable';
+// import ReactTableCus from '../../ReactTable'
 class ScrollDetector extends React.Component {
 constructor(props) {
     super(props);
